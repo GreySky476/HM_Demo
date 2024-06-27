@@ -1,2 +1,5 @@
 {
+  "@ohos.router": { // 待替换的moduleName
+    "source": "src/mock/MockDemo.ets" // mock代码的路径，相对于模块根目录
+  },
 }
