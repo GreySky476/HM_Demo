@@ -2,6 +2,8 @@
 // Index.ets
 import { router } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
+// 引入 mock
+import { MockKit, when, MockSetup } from '@ohos/hamock';
 /*
 @Preview({
   title: 'Component1',  //预览组件的名称
@@ -21,6 +23,19 @@ import { BusinessError } from '@kit.BasicServicesKit';
 })
 @Component
 struct ButtonPre {
+  @Prop randomResult: string;
+  // 定义 method1 函数
+  method1(str: string) {
+    return '';
+  }
+  @MockSetup
+  randomName() {
+    let mocker: MockKit = new MockKit();
+    let mockFunc: object = mocker.mockFunc(this, this.method1);
+    this.randomResult = 'hello world';
+    // 当 method1 的传值为 test 时，返回设置好的 this.randomResult
+    when (mockFunc)('test').afterReturn(this.randomResult);
+  }
   build() {
     Button() {
       Text('Next')
@@ -36,6 +51,8 @@ struct ButtonPre {
     .height('5%')
     // 添加跳转事件
     .onClick(() => {
+      // 调用 method1
+      console.log(this.method1('test'))
       console.log(`Succeeded in clicking the 'Next' button.`);
       // 跳转第二页
       router.pushUrl({ url: 'pages/Second' }).then(() => {
@@ -46,6 +63,8 @@ struct ButtonPre {
     })
   }
 }
+
+
 
 @Entry
 @Component

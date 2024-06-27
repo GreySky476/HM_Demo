@@ -5,6 +5,8 @@
   "main": "",
   "author": "",
   "license": "",
-  "dependencies": {}
+  "devDependencies": {
+    "@ohos/hamock": "1.0.0"
+  }
 }
 
