@@ -135,6 +135,35 @@ function f(): () => number {
 let z = f();
 z();
 z();
+// 函数重载
+function food(name: string): void;
+function food(count: number): void;
+function food(count: number, name: string): void;
+function food(key: string | number): void {
+}
+food('fish');
+food(1);
+food(1, 'fish');
+
+// 类
+class People {
+  name: string = 'susan'
+  age: number = 15
+  p?: object;
+
+
+  // constructor(n: string);
+  // constructor(a: number);
+  // constructor(n: string, a: number);
+  constructor(n: string, a: number) {
+    this.name = n;
+    this.age = a;
+  }
+
+}
+
+// 字段
+
 
 
 
